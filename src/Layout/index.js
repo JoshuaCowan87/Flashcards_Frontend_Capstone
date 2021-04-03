@@ -1,8 +1,8 @@
 import React from "react";
 import Header from "./Header";
 import NotFound from "./NotFound";
-import {ViewDecks} from "./Decks/ViewDecks"
-import {Route, Switch} from "react-router"
+import ViewDecks from "./Decks/ViewDecks";
+import {Route, Switch} from "react-router";
 
 function Layout() {
 
