@@ -1,21 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
+import { Route, Switch } from "react-router-dom";
 import Header from "./Header";
 import NotFound from "./NotFound";
-import ViewDecks from "./Decks/ViewDecks";
-import {Route, Switch} from "react-router";
+import Home from "../Home/Home" 
 
 function Layout() {
+  const [decks, setDecks] = useState([]);
 
   return (
     <div>
       <Header />
-      {/*<CreateDeck />*/}
       <div className="container">
         <Switch>
-        <Route exact path="/">
-          <ViewDecks />
-        </Route>
-          <NotFound />
+          <Route exact path="/">
+            <Home decks={decks}/>
+          </Route>
+          <Route>
+            <NotFound />
+          </Route>
         </Switch>
       </div>
     </div>
