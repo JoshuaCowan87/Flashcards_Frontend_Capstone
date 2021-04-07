@@ -1,11 +1,12 @@
-import React, {useState} from "react"
-import Decks from "./Decks"
-import {useParams, useHistory} from "react-router"
+import React, {useState} from "react";
+import Decks from "./ViewDeck";
+import {useParams, useHistory, Link} from "react-router-dom";
+import CardList from "../Cards/CardList";
 
-function StudyDeck({}) {
-const deckId = useParams();
-const history = history();
-const [deck, setDeck] = useState();
+function StudyDeck({deckId, deck}) {
+
+
+
 
     return (
 <div className="container">
@@ -27,3 +28,5 @@ const [deck, setDeck] = useState();
 </div>
     )
 }
+
+export default StudyDeck;

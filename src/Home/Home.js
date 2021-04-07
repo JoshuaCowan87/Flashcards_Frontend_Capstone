@@ -1,9 +1,10 @@
 import React, {useEffect} from "react";
 import { Route, Switch, useHistory} from "react-router-dom";
-import Decks from "../Decks/Decks"
-import ViewDecks from "./ViewDecks"
+import Decks from "../Decks/ViewDeck"
+import DeckHome from "../Decks/DeckHome"
 import {deleteDeck, listDecks} from "../utils/api/index";
 import CreateDeck from "./CreateDeck"
+import ViewDecks from "./ViewDecks"
 
 function Home({decks, setDecks}) {
 const history = useHistory();
@@ -40,7 +41,7 @@ function deleteDeckHandler (deckId) {
                     <CreateDeck />
                 </Route>        
                 <Route path="/decks/:deckId">
-                    <Decks decks={decks} deleteDeckHandler={deleteDeckHandler}/>
+                    <DeckHome decks={decks} deleteDeckHandler={deleteDeckHandler}/>
                 </Route>                
             </Switch>
         </div>
