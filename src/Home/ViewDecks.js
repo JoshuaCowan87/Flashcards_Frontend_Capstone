@@ -1,20 +1,14 @@
 import React, {useState, useEffect, useParams} from "react";
 import {readDeck, listDecks, deleteDeck} from "../utils/api/index";
 import {Link, useHistory} from "react-router-dom";
-import CardList from "../Cards/CardList";
 
 
 
 
-function ViewDecks ({decks, setDecks}) {
+
+function ViewDecks ({decks, setDecks, deleteDeckHandler}) {
 // set variables
     const history = useHistory();
-  
-function deleteDeckHandler (deckId) {
-      if(window.confirm("Are you super duper sure you want to delete? Once deleted, no take backs")) {
-        deleteDeck(deckId).then(history.go(0))
-      }
-    }
 
 
 // map decks into format

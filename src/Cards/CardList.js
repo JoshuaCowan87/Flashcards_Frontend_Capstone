@@ -1,28 +1,37 @@
+
+
 import React, {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
-import { listCards } from "../utils/api";
+import {Link, useHistory} from "react-router-dom";
+import { listCards, deleteCard, readDeck } from "../utils/api";
 
 
-function CardList () {
+function CardList ({deck, setDecks, deckId}) {
+// set variables
 const [cards, setCards] = useState();
-const [deck, SetDeck] = useState();
+//const [deck, setDeck] = useState();
+const history = useHistory();
+console.log("cards", deckId)
 
 // fetch cards
 useEffect(() => {
-    async function getCards () {
-        const gettingCards = await listCards();
-        setCards(gettingCards);
+    async function getDeck () {
+        const gettingDeck = await readDeck(deckId);
+       // setDeck(gettingDeck);
     }
-    getCards();
-}, []);
+    getDeck();
+}, [deckId]);
+console.log("deck", deck)
 
 // delete card handler
-const deleteCardHandler = () => {
-    
-}
+function deleteCardHandler (CardId) {
+    if(window.confirm("Are you super duper sure you want to delete? Once deleted, no take backs")) {
+      deleteCard(CardId);
+      history.push("/");     
+    }
+  }
 
 // map cards into format
-const cardLayout = cards.map(card => {
+const cardLayout = deck.cards.map((card) => {
     return (
         <div className="container">
             <div className="card" key={card.id}>

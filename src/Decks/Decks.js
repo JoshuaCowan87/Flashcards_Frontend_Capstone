@@ -1,25 +1,57 @@
-import React from "react"
-import {useParams, useHistory, Link} from "react-router-dom"
-import {deleteDeck, listDecks} from "../utils/api/index";
+import React, {useState, useEffect} from "react";
+import {useParams, useHistory, Link} from "react-router-dom";
+import {deleteDeck, listDecks, readDeck, deleteCard} from "../utils/api/index";
+import CardList from "../Cards/CardList"
 
-function Decks({decks, deleteDeckHandler}) {
+function Decks({decks, setDecks, deleteDeckHandler}) {
 // set variables
 const {deckId} = useParams();
 const history = useHistory();
+const [cards, setCards] = useState();
 
+// map cards into format
+const cardLayout = deck.cards.map((card) => {
+    return (
+        <div className="container">
+            <div className="card" key={card.id}>
+                <div>
+                    <p>{card.front}</p>
+                </div>
+                <div>
+                    <p>{card.back}</p>
+                </div>
+                <Link to={`/decks/${deck.id}/cards/${card.id}/edit`}>
+                    Edit
+                </Link>
+                <button type="button" onClick={deleteCardHandler}>
+                    Delete
+                </button>
 
+            </div>
+        </div>
+    )
+})
 
-const deck =decks.find(deck => `${deck.id}` === deckId)
-console.log("deckId", deckId)
+// fetch cards
+useEffect(() => {
+    async function getDeck () {
+        const gettingDeck = await readDeck(deckId);
+        setDecks(gettingDeck);
+    }
+    getDeck();
+}, [deckId]);
 console.log("deck", deck)
-console.log("decks", decks)
 
-// delete deck 
-function deleteDeckHandler (deckId) {
+// delete card handler
+function deleteCardHandler (CardId) {
     if(window.confirm("Are you super duper sure you want to delete? Once deleted, no take backs")) {
-      deleteDeck(deckId).then(history.go(0))
+      deleteCard(CardId);
+      history.push("/");     
     }
   }
+
+//find deck
+const deck =decks.find(deck => `${deck.id}` === deckId)
 
 if (deck) {
     return (
@@ -38,10 +70,10 @@ if (deck) {
         <Link to="/decks/:deckId/edit">Edit</Link>
         <Link to="/decks/:deckId/study">Study</Link>
         <Link to="/decks/:deckId/cards/new">Add Cards</Link>
-        <button onClick={deleteDeckHandler}>Delete Deck</button>
+        <button onClick={() => deleteDeckHandler(deckId)}>Delete Deck</button>
     </div>
     <div className="cards">
-            {/* add cards here */}
+        <CardList />
     </div>
 
 </div>

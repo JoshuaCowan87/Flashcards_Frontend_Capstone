@@ -20,7 +20,8 @@ useEffect(() => {
 // delete deck 
 function deleteDeckHandler (deckId) {
     if(window.confirm("Are you super duper sure you want to delete? Once deleted, no take backs")) {
-      deleteDeck(deckId).then(history.go(0))
+      deleteDeck(deckId);
+      history.push("/");     
     }
   }
 

@@ -4,27 +4,29 @@ import {useHistory, Link} from "react-router-dom";
 
 
 const CreateDeck = () => {
-    const initialFormState = {
-        name: " ",
-        description: " ",
-    };
-const [newDeck, setNewDeck] = useState({initialFormState});
+   
+const [newDeck, setNewDeck] = useState({
+    "name": "",
+    "description": ""
+});
 const history = useHistory();
 
 const changeHandler = (e) => {
     e.preventDefault();
-    setNewDeck({...newDeck, [e.target.name] : e.target.value})
+    setNewDeck({...newDeck, [e.target.name]: e.target.value})
 }
 
-const submitHandler = (e) => {
-    createDeck(newDeck);
-    history.push("-2");
+
+
+ async function submitHandler(e) {
+    const response = await createDeck(newDeck);
+    history.push("/");
+    return response
 }
 
 const cancelHandler = (e) => {
     history.push("/");
 }
-
 
     return (
         <div className="container">
@@ -34,7 +36,7 @@ const cancelHandler = (e) => {
                     </li>
                 <li className="breadcrumb-item-active">Create Deck</li>
             </ol>
-            <form>
+            <form onSubmit={submitHandler}>
                 <label>Deck Name</label>
                 <input
                 type="text"
