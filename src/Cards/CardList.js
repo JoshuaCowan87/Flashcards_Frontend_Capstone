@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {useHistory, useParams, useRouteMatch} from "react-router-dom";
-import {Link} from "react-router"
+import {Link} from "react-router-dom";
 import { listCards } from "../utils/api";
 
 
-export function CardList () {
+function CardList () {
 const [cards, setCards] = useState();
 const [deck, SetDeck] = useState();
 

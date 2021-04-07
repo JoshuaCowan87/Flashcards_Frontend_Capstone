@@ -1,10 +1,14 @@
 import React, {useState} from "react";
 import {createDeck} from "../utils/api/index"
-import {useHistory} from "react-router-dom";
+import {useHistory, Link} from "react-router-dom";
 
 
 const CreateDeck = () => {
-const [newDeck, setNewDeck] = useState();
+    const initialFormState = {
+        name: " ",
+        description: " ",
+    };
+const [newDeck, setNewDeck] = useState({initialFormState});
 const history = useHistory();
 
 const changeHandler = (e) => {
@@ -13,13 +17,12 @@ const changeHandler = (e) => {
 }
 
 const submitHandler = (e) => {
-    e.preventDefault();
     createDeck(newDeck);
-    history.pushState("/");
+    history.push("-2");
 }
 
 const cancelHandler = (e) => {
-    history.go("-1");
+    history.push("/");
 }
 
 
@@ -29,7 +32,7 @@ const cancelHandler = (e) => {
                 <li className="breadcrumb-item">
                     <Link to="/">Home</Link>
                     </li>
-                <li className="breadcrumb-active">Create Deck</li>
+                <li className="breadcrumb-item-active">Create Deck</li>
             </ol>
             <form>
                 <label>Deck Name</label>

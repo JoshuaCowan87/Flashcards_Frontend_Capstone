@@ -1,29 +1,21 @@
 import React, {useState, useEffect, useParams} from "react";
 import {readDeck, listDecks, deleteDeck} from "../utils/api/index";
 import {Link, useHistory} from "react-router-dom";
-import CardList from "../cards/CardList"
+import CardList from "../Cards/CardList";
 
 
 
-const ViewDecks = ({decks}) => {
+
+function ViewDecks ({decks, setDecks}) {
 // set variables
     const history = useHistory();
+  
+function deleteDeckHandler (deckId) {
+      if(window.confirm("Are you super duper sure you want to delete? Once deleted, no take backs")) {
+        deleteDeck(deckId).then(history.go(0))
+      }
+    }
 
-// delete deck 
-function deleteDeckHandler () {
-  if(window.confirm("Are you super duper sure you want to delete? Once deleted, no take backs")) {
-    deleteDeck(deckId).then(history.go(0))
-  }
-}
-   
-// retrieve decks
-useEffect(() => {
-  async function getDecks() {
-    const gettingDecks = await listDecks();
-    setDecks(gettingDecks);
-  }
-  getDecks();
-}, []);
 
 // map decks into format
 const deckLayout = decks.map((deck) => {
@@ -47,7 +39,7 @@ const deckLayout = decks.map((deck) => {
           <Link to={`/decks/${deck.id}/study`}>
             Study
           </Link>
-          <button type="button" onClick={deleteDeckHandler}>
+          <button type="button" onClick= {() => deleteDeckHandler(deck.id)}>
             Delete
           </button>
         </div> 
@@ -58,10 +50,6 @@ const deckLayout = decks.map((deck) => {
     return (
 <div>
   {deckLayout}
-  <h2>Cards</h2>
-  <div>
-    {CardList}
-  </div>
 </div>
     )
 }

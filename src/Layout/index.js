@@ -4,6 +4,7 @@ import Header from "./Header";
 import NotFound from "./NotFound";
 import Home from "../Home/Home" 
 
+
 function Layout() {
   const [decks, setDecks] = useState([]);
 
@@ -12,9 +13,9 @@ function Layout() {
       <Header />
       <div className="container">
         <Switch>
-          <Route exact path="/">
-            <Home decks={decks}/>
-          </Route>
+          <Route path="/">
+            <Home decks={decks} setDecks={setDecks}/>
+          </Route>         
           <Route>
             <NotFound />
           </Route>

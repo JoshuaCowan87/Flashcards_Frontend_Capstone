@@ -1,29 +1,48 @@
-import React, {useState} from "react";
-import { Route, Switch, useHistory } from "react-router-dom";
+import React, {useEffect} from "react";
+import { Route, Switch, useHistory} from "react-router-dom";
 import Decks from "../Decks/Decks"
 import ViewDecks from "./ViewDecks"
+import {deleteDeck, listDecks} from "../utils/api/index";
+import CreateDeck from "./CreateDeck"
 
-
-export default function Home({decks}) {
+function Home({decks, setDecks}) {
 const history = useHistory();
+
+// retrieve decks
+useEffect(() => {
+    async function getDecks() {
+      const gettingDecks = await listDecks();
+      setDecks(gettingDecks);
+    }
+    getDecks();
+  }, [setDecks]);
+
+// delete deck 
+function deleteDeckHandler (deckId) {
+    if(window.confirm("Are you super duper sure you want to delete? Once deleted, no take backs")) {
+      deleteDeck(deckId).then(history.go(0))
+    }
+  }
 
     return (
         <div className="container">
             <div>
-                {/* how does "/decks/new" go to CreateDeck.js */}
-            <button type="button" onClick={() => history.pushState("/decks/new")}>
+            <button type="button" onClick={() => history.push("/decks/new")}>            
             Create Deck
             </button>
-            </div>
-            
-            <Switch>
+            </div>           
+            <Switch>               
                 <Route exact path="/">
-                    <ViewDecks decks={decks}/>
+                    <ViewDecks decks={decks} setDecks={setDecks} deleteDeckHandler={deleteDeckHandler}/>
                 </Route>
+                <Route exact path="/decks/new">
+                    <CreateDeck />
+                </Route>        
                 <Route path="/decks/:deckId">
-                    <Decks decks={decks} />
-                </Route>
+                    <Decks decks={decks} deleteDeckHandler={deleteDeckHandler}/>
+                </Route>                
             </Switch>
         </div>
     )
 }
+export default Home;
