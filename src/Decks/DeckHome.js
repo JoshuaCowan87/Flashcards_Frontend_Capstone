@@ -1,10 +1,11 @@
-import React from "react";
-//import ViewDeck from "./ViewDeck";
-import {Switch, Route, useParams} from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {Switch, Route, Link, useParams} from "react-router-dom";
 import StudyDeck from "./StudyDeck";
 import EditDeck from "./EditDeck";
+import {listDecks, listCards} from "../utils/api/index";
+import CardList from "../Cards/CardList";
 
-const DeckHome = ({decks, deleteDeckHandler}) => {
+const DeckHome = ({decks, setDecks, deleteDeckHandler}) => {
     const {deckId} = useParams();
     const [cards, setCards] = useState([]);
 
@@ -41,23 +42,24 @@ const ViewDeck = () => {
             <button onClick={() => deleteDeckHandler(deckId)}>Delete Deck</button>
         </div>
         <div>
-            <CardList deck={deck} decks={decks} setDecks={setDecks} deckId={deckId} cards={cards} setDeck={setDeck}/>
+            <CardList deck={deck} decks={decks} setDecks={setDecks} deckId={deckId} cards={cards} />
         </div>
     </div>
-        
+        )      
+}
 }
     
     return (
         <div>
             <Switch>
                 <Route exact path="/decks/:deckId">
-                    <ViewDeck deckId={deckId} decks={decks} deck={deck} cards={cards} setDeck={setDeck}/>
+                    <ViewDeck deckId={deckId} decks={decks} deck={deck} cards={cards} />
                 </Route>
                 <Route path="/decks/:deckId/study"> 
                 <StudyDeck deckId={deckId} deck={deck} deleteDeckHandler={deleteDeckHandler}/>
             </Route>
                 <Route path="/decks/:deckId/edit">
-                    <EditDeck />
+                    <EditDeck deckId={deckId} deck={deck}/>
                 </Route> 
                 <Route>
                     <p>Deck not found</p>   
@@ -65,8 +67,8 @@ const ViewDeck = () => {
             </Switch>
         </div>  
     )
-}
 
+}
 
 
 export default DeckHome;

@@ -1,8 +1,4 @@
-import React, {useState, useEffect} from "react";
-import {useParams, useHistory, Link, Route, Switch} from "react-router-dom";
-import {deleteDeck, listDecks, readDeck, deleteCard} from "../utils/api/index";
-import CardList from "../Cards/CardList";
-import StudyDeck from "./StudyDeck";
+
 
 function ViewDeck({decks, deck, setDecks, deleteDeckHandler, deckId, cards, setCards}) {
 
@@ -28,7 +24,7 @@ if (deck) {
     <div className="cards">
         <Switch>
             <Route exact path="/decks/:deckId">
-                <CardList deck={deck} decks={decks} setDecks={setDecks} deckId={deckId} cards={cards} setDeck={setDeck}/>
+                <CardList deck={deck} decks={decks} setDecks={setDecks} deckId={deckId} cards={cards} />
             </Route>
             
         </Switch>
@@ -44,7 +40,6 @@ return <p>Deck Not Found</p>
 
 }
 
-export default ViewDeck
 
 
 

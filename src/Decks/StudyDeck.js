@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import Decks from "./ViewDeck";
 import {useParams, useHistory, Link} from "react-router-dom";
 import CardList from "../Cards/CardList";
 

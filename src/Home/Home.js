@@ -1,6 +1,5 @@
 import React, {useEffect} from "react";
 import { Route, Switch, useHistory} from "react-router-dom";
-import Decks from "../Decks/ViewDeck"
 import DeckHome from "../Decks/DeckHome"
 import {deleteDeck, listDecks} from "../utils/api/index";
 import CreateDeck from "./CreateDeck"
@@ -41,7 +40,7 @@ function deleteDeckHandler (deckId) {
                     <CreateDeck />
                 </Route>        
                 <Route path="/decks/:deckId">
-                    <DeckHome decks={decks} deleteDeckHandler={deleteDeckHandler}/>
+                    <DeckHome decks={decks} setDecks={setDecks} deleteDeckHandler={deleteDeckHandler}/>
                 </Route>                
             </Switch>
         </div>
