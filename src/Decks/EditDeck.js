@@ -2,38 +2,49 @@ import React, {useState, useEffect} from "react";
 import {readDeck, updateDeck} from "../utils/api/index";
 import {Link, useHistory, useParams} from "react-router-dom"
 
-const EditDeck = () => {
+const EditDeck = ({setDecks, decks, deckId}) => {
 
+// assign variables
 const history = useHistory();
-const [editDeck, setEditDeck] = useState();
-const {deckId} = useParams();
+//const {deckId} = useParams();
+
+const initialDeckState = {
+    id: " ",
+    name: " ",
+    description: " ",
+}
+const [editDeck, setEditDeck] = useState(initialDeckState);
+
+console.log("first deckId", deckId)
 // retrieve deck
 useEffect(() => {
-    async function getDeck(deckId) {
-      const gettingDeck = await readDeck({deckId});
+    async function getDeck() {
+        console.log("mid deckId", deckId)
+      const gettingDeck = await readDeck(deckId);
       setEditDeck(gettingDeck);
     }
-    getDeck();
+    getDeck()
   }, [deckId]);
-console.log("edit deck", editDeck)
-    
 
+   
+// change handler
     const changeHandler = (e) => {
         e.preventDefault();
         setEditDeck({...editDeck, [e.target.name]: e.target.value})
     }
-    
-    
-    
+       
+// submit handler    
      async function submitHandler(e) {
         const response = await updateDeck(editDeck);
+        return response;
         history.push("/");
-        return response
     }
-    
+
+// cancel handler   
     const cancelHandler = (e) => {
         history.push("/");
     }
+
     return (
         <div className="container">
             <ol className="breadcrumb">
@@ -41,7 +52,7 @@ console.log("edit deck", editDeck)
                     <Link to="/">Home</Link>
                     </li>
                 <li className="breadcrumb-item">
-                    <Link to="/decks/:deckId">{deckId.name}</Link>
+                    <Link to="/decks/:deckId">{editDeck.name}</Link>
                 </li>
                 <li className="breadcrumb-item-actice">
                     Edit Deck
@@ -54,7 +65,7 @@ console.log("edit deck", editDeck)
                 id="name"
                 name="name"
                 onChange={changeHandler}
-              {/*  value={editDeck.name}               */}
+                value={editDeck.name}               
                 ></input>
 
                 <label>Description</label>
@@ -63,7 +74,7 @@ console.log("edit deck", editDeck)
                 id="description"
                 name="description"
                 onChange={changeHandler}
-            {/*    value={editDeck.description}         */}
+                value={editDeck.description}         
                 ></input>
                 <button type="cancel" onClick={cancelHandler}>Cancel</button>
                 <button type="submit" onSubmit={submitHandler}>Submit</button>

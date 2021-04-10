@@ -53,13 +53,13 @@ const ViewDeck = () => {
         <div>
             <Switch>
                 <Route exact path="/decks/:deckId">
-                    <ViewDeck deckId={deckId} decks={decks} deck={deck} cards={cards} />
+                    <div>{ViewDeck}</div>
                 </Route>
                 <Route path="/decks/:deckId/study"> 
-                <StudyDeck deckId={deckId} deck={deck} deleteDeckHandler={deleteDeckHandler}/>
+                <StudyDeck deckId={deckId} deck={deck} deleteDeckHandler={deleteDeckHandler} cards={cards} setCrds={setCards} />
             </Route>
                 <Route path="/decks/:deckId/edit">
-                    <EditDeck deckId={deckId} deck={deck}/>
+                    <EditDeck deckId={deckId} deck={deck} setDecks={setDecks} decks={decks}/>
                 </Route> 
                 <Route>
                     <p>Deck not found</p>   

@@ -2,10 +2,10 @@ import React, {useState} from "react";
 import {useParams, useHistory, Link} from "react-router-dom";
 import CardList from "../Cards/CardList";
 
-function StudyDeck({deckId, deck}) {
+function StudyDeck({deckId, deck, cards, setCards}) {
 
 
-
+const card = cards.find(card => )
 
     return (
 <div className="container">
@@ -22,8 +22,11 @@ function StudyDeck({deckId, deck}) {
                 </li>
                 </li>
             </ol>
-    <h3> Study: {deck.name}</h3>    
-    {/* study cards here */}
+    <h3> Study: {deck.name}</h3>  
+    <div className="container">
+        <h5>Card</h5>    
+    </div>  
+    
 </div>
     )
 }

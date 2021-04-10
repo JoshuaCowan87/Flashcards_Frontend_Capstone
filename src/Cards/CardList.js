@@ -12,8 +12,7 @@ const history = useHistory();
 
 
 
-console.log("cards", cards)
-console.log("deckId", deckId)
+
 
 /*
 // delete card handler
