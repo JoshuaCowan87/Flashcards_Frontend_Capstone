@@ -5,7 +5,10 @@ import CardList from "../Cards/CardList";
 function StudyDeck({deckId, deck, cards, setCards}) {
 
 
-const card = cards.find(card => )
+
+
+
+console.log("study deckId", deckId, deck, cards)
 
     return (
 <div className="container">
@@ -24,7 +27,8 @@ const card = cards.find(card => )
             </ol>
     <h3> Study: {deck.name}</h3>  
     <div className="container">
-        <h5>Card</h5>    
+        <h5>Card {cards.id} of {cards.length}</h5>    
+        <p></p>
     </div>  
     
 </div>

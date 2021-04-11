@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Header from "./Header";
 import NotFound from "./NotFound";
@@ -6,7 +6,7 @@ import Home from "../Home/Home"
 
 
 function Layout() {
-  const [decks, setDecks] = useState([]);
+  
 
   return (
     <div>
@@ -14,7 +14,7 @@ function Layout() {
       <div className="container">
         <Switch>
           <Route path="/">
-            <Home decks={decks} setDecks={setDecks}/>
+            <Home />
           </Route>         
           <Route>
             <NotFound />

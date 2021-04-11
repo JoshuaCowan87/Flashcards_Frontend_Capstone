@@ -1,74 +1,73 @@
-import React, {useState, useEffect} from "react";
-import {Switch, Route, Link, useParams} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Switch, Route, Link, useParams } from "react-router-dom";
 import StudyDeck from "./StudyDeck";
 import EditDeck from "./EditDeck";
-import {listDecks, listCards} from "../utils/api/index";
-import CardList from "../Cards/CardList";
+import {listCards, readDeck} from "../utils/api/index";
+import ViewDeck from "./ViewDeck";
+import AddCard from "../Cards/AddCard";
+import EditCard from "../Cards/EditCard";
 
-const DeckHome = ({decks, setDecks, deleteDeckHandler}) => {
-    const {deckId} = useParams();
-    const [cards, setCards] = useState([]);
+const DeckHome = ({ decks, setDecks, deleteDeckHandler }) => {
+  const { deckId } = useParams();
+  const [cards, setCards] = useState([]);
+  const [deck, setDeck] = useState();
 
-// fetch specific deck
-const deck = decks.find(deck => `${deck.id}` === deckId)
+  // fetch specific deck
+  useEffect(() => {
+    async function getDeck() {
+      const gettingDeck = await readDeck(deckId);
+      setDeck(gettingDeck);
+    }
+    getDeck();
+  }, []);
+ // const deck = decks.find((deck) => `${deck.id}` === deckId);
 
-// fetch cards per deck
-useEffect(() => {
-    async function getCards () {
-        const gettingDeck = await listCards(deckId);
-       setCards(gettingDeck);
+  // fetch cards per deck
+  useEffect(() => {
+    async function getCards() {
+      const gettingDeck = await listCards(deckId);
+      setCards(gettingDeck);
     }
     getCards();
-}, []);
+  }, []);
 
-const ViewDeck = () => {
-    if (deck) {
-        return (
-    <div className="container">
-        <div>
-             <ol className="breadcrumb">
-                <li className="breadcrumb-item">
-                    <Link to="/">Home</Link>
-                </li>
-                <li className="breadcrumb-active">{deck.name}</li>
-            </ol>
-        </div>
-        <div className="deck-info">
-             <h3>{deck.name}</h3>   
-            <p>{deck.description}</p>
-            <Link to={`/decks/${deck.id}/edit`}>Edit</Link>
-            <Link to={`/decks/${deck.id}/study`}>Study</Link>
-            <Link to={`/decks/${deck.id}/addcards`}>Add Cards</Link>
-            <button onClick={() => deleteDeckHandler(deckId)}>Delete Deck</button>
-        </div>
-        <div>
-            <CardList deck={deck} decks={decks} setDecks={setDecks} deckId={deckId} cards={cards} />
-        </div>
+console.log("deckhome deck", deck);
+console.log("deckhome deck id", deckId)
+  return (
+    <div>
+      <Switch>
+        <Route exact path="/decks/:deckId">
+          <ViewDeck {...{ deck, decks, setDecks, cards }}/>
+        </Route>
+        <Route path="/decks/:deckId/study">
+          <StudyDeck
+            deckId={deckId}
+            deck={deck}
+            deleteDeckHandler={deleteDeckHandler}
+            cards={cards}
+            setCards={setCards}
+          />
+        </Route>
+        <Route path="/decks/:deckId/edit">
+          <EditDeck
+            deckId={deckId}
+            deck={deck}
+            setDecks={setDecks}
+            decks={decks}
+          />
+        </Route>
+        <Route path="/decks/:deckId/cards/:cardId/edit">
+          <EditCard {...{deck, cards, setCards, deckId}}/>
+        </Route>
+        <Route path="/decks/:deckId/cards/new">
+          <AddCard {...{deck, cards, setCards, deckId}}/>
+        </Route>
+        <Route>
+          <p>Deck not found</p>
+        </Route>
+      </Switch>
     </div>
-        )      
-}
-}
-    
-    return (
-        <div>
-            <Switch>
-                <Route exact path="/decks/:deckId">
-                    <div>{ViewDeck}</div>
-                </Route>
-                <Route path="/decks/:deckId/study"> 
-                <StudyDeck deckId={deckId} deck={deck} deleteDeckHandler={deleteDeckHandler} cards={cards} setCrds={setCards} />
-            </Route>
-                <Route path="/decks/:deckId/edit">
-                    <EditDeck deckId={deckId} deck={deck} setDecks={setDecks} decks={decks}/>
-                </Route> 
-                <Route>
-                    <p>Deck not found</p>   
-                </Route>          
-            </Switch>
-        </div>  
-    )
-
-}
-
+  );
+};
 
 export default DeckHome;

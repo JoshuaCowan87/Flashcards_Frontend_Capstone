@@ -19,6 +19,11 @@
       "name": " hey",
       "description": " hey",
       "id": 4
+    },
+    {
+      "name": "add card trial",
+      "description": "add card trial",
+      "id": 5
     }
   ],
   "cards": [
@@ -53,10 +58,9 @@
       "id": 5
     },
     {
-      "cards": [],
-      "front": "b",
-      "back": "b",
-      "deckId": 1,
+      "front": " adding card to test delete",
+      "back": " adding card to test delete",
+      "deckId": 3,
       "id": 7
     }
   ]

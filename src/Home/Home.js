@@ -1,11 +1,13 @@
-import React, {useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import { Route, Switch, useHistory} from "react-router-dom";
 import DeckHome from "../Decks/DeckHome"
 import {deleteDeck, listDecks} from "../utils/api/index";
 import CreateDeck from "./CreateDeck"
 import ViewDecks from "./ViewDecks"
 
-function Home({decks, setDecks}) {
+function Home() {
+ //assign variables 
+const [decks, setDecks] = useState([]);
 const history = useHistory();
 
 // retrieve decks
@@ -24,7 +26,7 @@ function deleteDeckHandler (deckId) {
       history.push("/");     
     }
   }
-
+console.log("home decks", decks)
     return (
         <div className="container">
             <div>

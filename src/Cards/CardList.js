@@ -5,7 +5,7 @@ import {Link, useHistory} from "react-router-dom";
 import { listCards, deleteCard, readDeck } from "../utils/api";
 
 
-function CardList ({deck, Decks, setDecks, deckId, cards, setCards}) {
+function CardList ({deck, cards}) {
 // set variables
 
 const history = useHistory();
@@ -14,15 +14,14 @@ const history = useHistory();
 
 
 
-/*
+
 // delete card handler
 function deleteCardHandler (cardId) {
     if(window.confirm("Are you super duper sure you want to delete? Once deleted, no take backs")) {
-      deleteCard(cardId);
-      history.push("/");     
+      deleteCard(cardId).then(() => history.push("/"));     
     }
   }
-*/
+
 
 // map cards into format
 const cardLayout = cards.map((card) => {
@@ -39,10 +38,11 @@ const cardLayout = cards.map((card) => {
                     Edit
                 </Link>
                 
-                    {/* add delete card handler */}
+                 
                    
 
             </div>
+            <button type="delete" onClick={ () => deleteCardHandler(card.id)}>Delete Card</button>
         </div>
     )
 })
