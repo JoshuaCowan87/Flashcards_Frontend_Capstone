@@ -26,7 +26,7 @@ function deleteDeckHandler (deckId) {
       history.push("/");     
     }
   }
-console.log("home decks", decks)
+
     return (
         <div className="container">
             <div>

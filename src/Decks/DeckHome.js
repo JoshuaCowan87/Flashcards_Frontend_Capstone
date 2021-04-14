@@ -31,8 +31,7 @@ const DeckHome = ({ decks, setDecks, deleteDeckHandler }) => {
     getCards();
   }, []);
 
-console.log("deckhome deck", deck);
-console.log("deckhome deck id", deckId)
+
   return (
     <div>
       <Switch>
@@ -60,7 +59,7 @@ console.log("deckhome deck id", deckId)
           <EditCard {...{deck, cards, setCards, deckId}}/>
         </Route>
         <Route path="/decks/:deckId/cards/new">
-          <AddCard {...{deck, cards, setCards, deckId}}/>
+          <AddCard {...{deck, cards, setCards, deckId, setDeck}}/>
         </Route>
         <Route>
           <p>Deck not found</p>

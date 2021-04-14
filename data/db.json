@@ -62,6 +62,48 @@
       "back": " adding card to test delete",
       "deckId": 3,
       "id": 7
+    },
+    {
+      "front": " trial1",
+      "back": " trial1",
+      "deckId": 5,
+      "id": 9
+    },
+    {
+      "front": " trial 2",
+      "back": " trial 2",
+      "deckId": 5,
+      "id": 10
+    },
+    {
+      "front": "trial 3 ",
+      "back": " trial 3",
+      "deckId": 5,
+      "id": 12
+    },
+    {
+      "front": " check",
+      "back": "check",
+      "deckId": 3,
+      "id": 13
+    },
+    {
+      "front": "check1 ",
+      "back": " check1",
+      "deckId": 3,
+      "id": 14
+    },
+    {
+      "front": " 3",
+      "back": " 3",
+      "deckId": 3,
+      "id": 15
+    },
+    {
+      "front": " 4",
+      "back": " 4",
+      "deckId": 3,
+      "id": 16
     }
   ]
 }

@@ -15,11 +15,10 @@ const initialDeckState = {
 }
 const [editDeck, setEditDeck] = useState(initialDeckState);
 
-console.log("first deckId", deckId)
+
 // retrieve deck
 useEffect(() => {
     async function getDeck() {
-        console.log("mid deckId", deckId)
       const gettingDeck = await readDeck(deckId);
       setEditDeck(gettingDeck);
     }
@@ -54,11 +53,11 @@ useEffect(() => {
                 <li className="breadcrumb-item">
                     <Link to="/decks/:deckId">{editDeck.name}</Link>
                 </li>
-                <li className="breadcrumb-item-actice">
+                <li className="breadcrumb-item-active">
                     Edit Deck
                 </li>
             </ol>
-            <form onSubmit={submitHandler}>
+            <form>
                 <label>Deck Name</label>
                 <input
                 type="text"
@@ -77,7 +76,7 @@ useEffect(() => {
                 value={editDeck.description}         
                 ></input>
                 <button type="cancel" onClick={cancelHandler}>Cancel</button>
-                <button type="submit" onSubmit={submitHandler}>Submit</button>
+                <button type="submit" onClick={submitHandler}>Submit</button>
             </form>
         </div>
     )

@@ -5,22 +5,23 @@ import { useHistory, Link, useParams } from "react-router-dom";
 
 
 
-// deck is undefined, troubleshoot
 
 
-//  deck, cards, setCards, deckId
-const AddCard = ({ deck, deckId}) => {
+
+// ={name: "Loading..."}
+const AddCard = ({deck, setDeck, deckId}) => {
 //assign variables
   const history = useHistory();
- // const {deckId} = useParams();
-  //const [deck, setDeck] = useState();
   const [newCard, setNewCard] = useState({
     front: " ",
     back: " ",
     deckId
   });
 
-// fetch deck, need to finish
+  console.log("add card deckID", deckId)
+  console.log("add card deck", deck)
+
+// fetch deck
 /* useEffect(() => {
     async function getDeck() {
       const gettingDeck = await readDeck(deckId);
@@ -41,8 +42,13 @@ const cardBackChangeHandler =(e) => {
 }
 
   async function cardSubmitHandler(e) {
+    e.preventDefault();
     const response = await createCard(deckId, newCard);
     history.push("/");
+    {/* find deck
+        add card to deck 
+        setDecks(new version of deck, with new card)
+    */}
     return response;
   }
 
@@ -51,22 +57,21 @@ const cardBackChangeHandler =(e) => {
   };
 
 
-  console.log("addCards deck", deck)
-  
-  console.log("addCards deckId", deckId)
+ if (!deck) {return <p>Loading...</p>}
   return (
+      
     <div className="container">
       <ol className="breadcrumb">
         <li className="breacrumb-item">
           <Link to="/">Home</Link>
         </li>
         <li className="breadcrumb-item">
-          <Link to="/decks/:deckId">deck.name</Link>
+          <Link to="/decks/:deckId">{deck.name}</Link>
         </li>
         <li className="breadcrumb-item-active"> Add Card</li>
       </ol>
-      <h3>deck.name: Add Card</h3>
-      <form onSubmit={cardSubmitHandler}>
+      <h3>{deck.name}: Add Card</h3>
+      <form >
         <label>Front</label>
         <input
           type="text"
@@ -91,6 +96,7 @@ const cardBackChangeHandler =(e) => {
         </button>
       </form>
     </div>
+    
   );
 };
 
