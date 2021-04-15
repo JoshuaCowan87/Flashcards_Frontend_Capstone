@@ -11,19 +11,9 @@
       "id": 2
     },
     {
-      "name": "edit deck trial added + 1",
-      "description": "edit deck trial added +",
+      "name": "edit deck ",
+      "description": "edit deck ",
       "id": 3
-    },
-    {
-      "name": " hey",
-      "description": " hey",
-      "id": 4
-    },
-    {
-      "name": "add card trial",
-      "description": "add card trial",
-      "id": 5
     }
   ],
   "cards": [
@@ -58,32 +48,8 @@
       "id": 5
     },
     {
-      "front": " adding card to test delete",
-      "back": " adding card to test delete",
-      "deckId": 3,
-      "id": 7
-    },
-    {
-      "front": " trial1",
-      "back": " trial1",
-      "deckId": 5,
-      "id": 9
-    },
-    {
-      "front": " trial 2",
-      "back": " trial 2",
-      "deckId": 5,
-      "id": 10
-    },
-    {
-      "front": "trial 3 ",
-      "back": " trial 3",
-      "deckId": 5,
-      "id": 12
-    },
-    {
-      "front": " check",
-      "back": "check",
+      "front": " check update1",
+      "back": "check update1",
       "deckId": 3,
       "id": 13
     },
@@ -92,18 +58,6 @@
       "back": " check1",
       "deckId": 3,
       "id": 14
-    },
-    {
-      "front": " 3",
-      "back": " 3",
-      "deckId": 3,
-      "id": 15
-    },
-    {
-      "front": " 4",
-      "back": " 4",
-      "deckId": 3,
-      "id": 16
     }
   ]
 }

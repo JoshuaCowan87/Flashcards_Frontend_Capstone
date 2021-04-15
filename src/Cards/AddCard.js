@@ -8,7 +8,7 @@ import { useHistory, Link, useParams } from "react-router-dom";
 
 
 
-// ={name: "Loading..."}
+
 const AddCard = ({deck, setDeck, deckId}) => {
 //assign variables
   const history = useHistory();
@@ -18,8 +18,7 @@ const AddCard = ({deck, setDeck, deckId}) => {
     deckId
   });
 
-  console.log("add card deckID", deckId)
-  console.log("add card deck", deck)
+  
 
 // fetch deck
 /* useEffect(() => {
@@ -45,11 +44,13 @@ const cardBackChangeHandler =(e) => {
     e.preventDefault();
     const response = await createCard(deckId, newCard);
     history.push("/");
-    {/* find deck
+    //deck.push(response);
+    setDeck({...deck, response});
+    /* find deck
         add card to deck 
         setDecks(new version of deck, with new card)
-    */}
-    return response;
+    */
+   // return response;
   }
 
   const cardCancelHandler = () => {

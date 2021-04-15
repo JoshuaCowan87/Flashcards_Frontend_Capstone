@@ -3,7 +3,10 @@ import CardList from "../Cards/CardList";
 import {Link} from "react-router-dom";
 
 // does not rerender appropriate number of cards
-const ViewDeck = ({ deck, decks, setDecks, cards, deleteDeckHandler }) => {
+const ViewDeck = ({ deck, decks, setDecks, cards, deleteDeckHandler}) => {
+
+
+
     if (!deck) return null;
     return (
       <div className="container">

@@ -28,10 +28,12 @@ const cardLayout = cards.map((card) => {
     return (
         <div className="container">
             <div className="card" key={card.id}>
-                <div>
+                <p>Front:</p>
+                <div className="container">
                     <p>{card.front}</p>
                 </div>
-                <div>
+                <p>Back:</p>
+                <div className="container">
                     <p>{card.back}</p>
                 </div>
                 <Link to={`/decks/${deck.id}/cards/${card.id}/edit`}>

@@ -36,7 +36,7 @@ const DeckHome = ({ decks, setDecks, deleteDeckHandler }) => {
     <div>
       <Switch>
         <Route exact path="/decks/:deckId">
-          <ViewDeck {...{ deck, decks, setDecks, cards }}/>
+          <ViewDeck {...{ deck, decks, setDecks, cards, deleteDeckHandler }}/>
         </Route>
         <Route path="/decks/:deckId/study">
           <StudyDeck
