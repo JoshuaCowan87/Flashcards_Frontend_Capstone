@@ -18,17 +18,7 @@ const AddCard = ({deck, setDeck, deckId}) => {
     deckId
   });
 
-  
 
-// fetch deck
-/* useEffect(() => {
-    async function getDeck() {
-      const gettingDeck = await readDeck(deckId);
-      setDeck(gettingDeck);
-    }
-    getDeck();
-  }, [deckId]);
-*/
 
 const cardFrontChangeHandler = (e) => {
     e.preventDefault();
@@ -44,13 +34,8 @@ const cardBackChangeHandler =(e) => {
     e.preventDefault();
     const response = await createCard(deckId, newCard);
     history.push("/");
-    //deck.push(response);
-    setDeck({...deck, response});
-    /* find deck
-        add card to deck 
-        setDecks(new version of deck, with new card)
-    */
-   // return response;
+    setDeck(deck);
+    
   }
 
   const cardCancelHandler = () => {

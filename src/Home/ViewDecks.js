@@ -14,7 +14,11 @@ function ViewDecks ({decks, setDecks, deleteDeckHandler}) {
 const deckLayout = decks.map((deck) => {
       return (
         <div className="container">
-
+<div>
+            <button type="button" onClick={() => history.push("/decks/new")}>            
+            Create Deck
+            </button>
+            </div>
         <div className="deck" key={deck.id}>
 
           <div>

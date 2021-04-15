@@ -1,62 +1,84 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import CardList from "../Cards/CardList";
+import { listCards, readDeck } from "../utils/api/index";
+import NotEnoughCards from "../Cards/NotEnoughCards";
 
-function StudyDeck({ deckId, deck, cards, setCards }) {
-  const [studyState, setStudyState] = useState({
-    cards: [],
-    currentCard: 0,
-    front: true,
-    flipped: false,
-  });
+function StudyDeck({ deckId /*deck, cards, setCards*/ }) {
+  const [cards, setCards] = useState();
+  const [deck, setDeck] = useState();
+  const [front, setFront] = useState(true);
+  const [cardIndex, setCardIndex] = useState(0);
+  const history = useHistory();
 
-  
+  // fetch deck and cards
+  useEffect(() => {
+    async function getCardsAndDeck() {
+      const response = await readDeck(deckId);
+      setDeck(response);
+      setCards(response.cards);
+    }
+    getCardsAndDeck();
+  }, deckId);
+
   // flip hander
   const flipHandler = (e) => {
-    setStudyState({
-      ...studyState,
-      front: !studyState.front,
-      flipped: !studyState.flipped,
-    });
+    setFront(!front);
   };
 
   // next handler
   const nextHandler = (e) => {
-    setStudyState({ ...studyState, front: true, currentCard: studyState.currentCard + 1 });
+    if (cardIndex + 1 < cards.length) {
+      setCardIndex(cardIndex + 1);
+      setFront(true);
+    } else {
+      const result = window.confirm(
+        "Do you want to restart? To return to homepage click cancel"
+      );
+      if (result) {
+        setFront(true);
+        setCardIndex(0);
+      } else {
+        history.push("/");
+      }
+    }
   };
 
-  const display = () => {
-    if (studyState.front) {
-      return studyState.front;
-    }
-    return studyState.back;
-  };
   console.log("study deck", deck);
   console.log("study cards", cards);
-  console.log("study state", studyState);
 
-  if (!studyState || !deck) {
+  
+  if (!cards) {
     return <p>Loading...</p>;
   }
+  if (cards.length < 3) { 
+     return <NotEnoughCards deck={deck} deckId={deckId} cards={cards} />;
+    }
+
   return (
+    
+      
     <div className="container">
-      <ol className="breadcrumb">
-        <li className="breadcrumb-item">
-          <Link to="/">Home</Link>
-        </li>
-        <li className="breadcrumb-itme">
-          <Link to={`/decks/${deckId}`}>{deck.name}</Link>
-          <li className="breadcrumb-item-active">Study</li>
-        </li>
-      </ol>
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <Link to="/">Home</Link>
+          </li>
+          <li className="breadcrumb-itme">
+            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
+            <li className="breadcrumb-item-active">Study</li>
+          </li>
+        </ol>
+      </nav>
       <h3> Study: {deck.name}</h3>
       <div className="container">
         <h5>
-          Card {cards.id} of {cards.length}
+          Card {cardIndex + 1} of {cards.length}
         </h5>
-        <p></p>
       </div>
-      <div>{display}</div>
+      <div>
+        <p>{front ? cards[cardIndex].front : cards[cardIndex].back}</p>
+      </div>
       <button type="flip" onClick={flipHandler}>
         Flip
       </button>
@@ -64,6 +86,7 @@ function StudyDeck({ deckId, deck, cards, setCards }) {
         Next
       </button>
     </div>
+      
   );
 }
 

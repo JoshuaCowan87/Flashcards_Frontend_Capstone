@@ -19,7 +19,7 @@ const DeckHome = ({ decks, setDecks, deleteDeckHandler }) => {
       setDeck(gettingDeck);
     }
     getDeck();
-  }, []);
+  }, [deckId]);
  // const deck = decks.find((deck) => `${deck.id}` === deckId);
 
   // fetch cards per deck

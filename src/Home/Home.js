@@ -28,12 +28,7 @@ function deleteDeckHandler (deckId) {
   }
 
     return (
-        <div className="container">
-            <div>
-            <button type="button" onClick={() => history.push("/decks/new")}>            
-            Create Deck
-            </button>
-            </div>           
+        <div className="container">           
             <Switch>               
                 <Route exact path="/">
                     <ViewDecks decks={decks} setDecks={setDecks} deleteDeckHandler={deleteDeckHandler}/>
