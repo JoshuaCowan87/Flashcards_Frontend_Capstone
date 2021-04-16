@@ -18,7 +18,7 @@ function NotEnoughCards({ deck, deckId, cards }) {
       <div>
         <h3> Study: {deck.name}</h3>
         <p>
-          Note Enough Cards! You need at least 3 cards to study. There are{" "}
+          Not Enough Cards! You need at least 3 cards to study. There are{" "}
           {cards.length} in this deck
         </p>
       </div>

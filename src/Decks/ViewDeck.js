@@ -12,10 +12,10 @@ const ViewDeck = ({ deck, decks, setDecks, cards, deleteDeckHandler}) => {
       <div className="container">
         <div>
           <ol className="breadcrumb">
-            <li className="breadcrumb-item">
+            <li className="breadcrumb-item" key="0">
               <Link to="/">Home</Link>
             </li>
-            <li className="breadcrumb-active">{deck.name}</li>
+            <li className="breadcrumb-active" key="1">{deck.name}</li>
           </ol>
         </div>
         <div className="deck-info">
@@ -27,6 +27,7 @@ const ViewDeck = ({ deck, decks, setDecks, cards, deleteDeckHandler}) => {
           <button onClick={() => deleteDeckHandler(deck.id)}>Delete Deck</button>
         </div>
         <div>
+          <h4>Cards</h4>
           <CardList
             deck={deck}
             decks={decks}
