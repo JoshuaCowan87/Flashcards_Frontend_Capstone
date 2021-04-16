@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { readDeck, updateDeck } from "../utils/api/index";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const EditDeck = ({ deck, deckId }) => {
   // assign variables
@@ -32,7 +32,7 @@ const EditDeck = ({ deck, deckId }) => {
   // submit handler
   async function submitHandler(e) {
     e.preventDefault();
-    const response = await updateDeck(editDeck);
+    await updateDeck(editDeck);
     history.push("/");
   }
 

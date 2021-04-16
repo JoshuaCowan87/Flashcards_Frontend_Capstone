@@ -33,14 +33,14 @@ const EditCard = ({ deck, deckId }) => {
 
   // cancel handler
   function cancelHandler(e) {
-      e.preventDefault();
+    e.preventDefault();
     history.push("/decks/:deckId");
   }
 
   // submit handler
   async function cardSubmitHandler(e) {
-      e.preventDefault();
-    const response = await updateCard(editCard);
+    e.preventDefault();
+    await updateCard(editCard);
     history.push("/decks/:deckId");
   }
 

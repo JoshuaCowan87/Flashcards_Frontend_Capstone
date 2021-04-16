@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory, Link } from "react-router-dom";
-import CardList from "../Cards/CardList";
-import { listCards, readDeck } from "../utils/api/index";
+import { useHistory, Link } from "react-router-dom";
+import { readDeck } from "../utils/api/index";
 import NotEnoughCards from "../Cards/NotEnoughCards";
 
 function StudyDeck({ deckId /*deck, cards, setCards*/ }) {
@@ -19,7 +18,7 @@ function StudyDeck({ deckId /*deck, cards, setCards*/ }) {
       setCards(response.cards);
     }
     getCardsAndDeck();
-  }, deckId);
+  }, [deckId]);
 
   // flip hander
   const flipHandler = (e) => {
@@ -47,17 +46,14 @@ function StudyDeck({ deckId /*deck, cards, setCards*/ }) {
   console.log("study deck", deck);
   console.log("study cards", cards);
 
-  
   if (!cards) {
     return <p>Loading...</p>;
   }
-  if (cards.length < 3) { 
-     return <NotEnoughCards deck={deck} deckId={deckId} cards={cards} />;
-    }
+  if (cards.length < 3) {
+    return <NotEnoughCards deck={deck} deckId={deckId} cards={cards} />;
+  }
 
   return (
-    
-      
     <div className="container">
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
@@ -66,8 +62,8 @@ function StudyDeck({ deckId /*deck, cards, setCards*/ }) {
           </li>
           <li className="breadcrumb-itme">
             <Link to={`/decks/${deckId}`}>{deck.name}</Link>
-            <li className="breadcrumb-item-active">Study</li>
           </li>
+          <li className="breadcrumb-item-active">Study</li>
         </ol>
       </nav>
       <h3> Study: {deck.name}</h3>
@@ -86,7 +82,6 @@ function StudyDeck({ deckId /*deck, cards, setCards*/ }) {
         Next
       </button>
     </div>
-      
   );
 }
 

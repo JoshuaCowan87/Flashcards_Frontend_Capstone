@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route, Link, useParams } from "react-router-dom";
+import { Switch, Route, useParams } from "react-router-dom";
 import StudyDeck from "./StudyDeck";
 import EditDeck from "./EditDeck";
-import {listCards, readDeck} from "../utils/api/index";
+import { listCards, readDeck } from "../utils/api/index";
 import ViewDeck from "./ViewDeck";
 import AddCard from "../Cards/AddCard";
 import EditCard from "../Cards/EditCard";
@@ -20,7 +20,7 @@ const DeckHome = ({ decks, setDecks, deleteDeckHandler }) => {
     }
     getDeck();
   }, [deckId]);
- // const deck = decks.find((deck) => `${deck.id}` === deckId);
+  // const deck = decks.find((deck) => `${deck.id}` === deckId);
 
   // fetch cards per deck
   useEffect(() => {
@@ -29,14 +29,13 @@ const DeckHome = ({ decks, setDecks, deleteDeckHandler }) => {
       setCards(gettingDeck);
     }
     getCards();
-  }, []);
-
+  }, [deckId]);
 
   return (
     <div>
       <Switch>
         <Route exact path="/decks/:deckId">
-          <ViewDeck {...{ deck, decks, setDecks, cards, deleteDeckHandler }}/>
+          <ViewDeck {...{ deck, decks, setDecks, cards, deleteDeckHandler }} />
         </Route>
         <Route path="/decks/:deckId/study">
           <StudyDeck
@@ -56,10 +55,10 @@ const DeckHome = ({ decks, setDecks, deleteDeckHandler }) => {
           />
         </Route>
         <Route path="/decks/:deckId/cards/:cardId/edit">
-          <EditCard {...{deck, cards, setCards, deckId}}/>
+          <EditCard {...{ deck, cards, setCards, deckId }} />
         </Route>
         <Route path="/decks/:deckId/cards/new">
-          <AddCard {...{deck, cards, setCards, deckId, setDeck}}/>
+          <AddCard {...{ deck, cards, setCards, deckId, setDeck }} />
         </Route>
         <Route>
           <p>Deck not found</p>

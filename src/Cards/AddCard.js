@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { createCard, readDeck } from "../utils/api/index";
-import { useHistory, Link, useParams } from "react-router-dom";
+import React, {useState} from "react";
+import { createCard} from "../utils/api/index";
+import { useHistory, Link} from "react-router-dom";
 
 
 
@@ -32,7 +32,7 @@ const cardBackChangeHandler =(e) => {
 
   async function cardSubmitHandler(e) {
     e.preventDefault();
-    const response = await createCard(deckId, newCard);
+    await createCard(deckId, newCard);
     history.push("/");
     setDeck(deck);
     

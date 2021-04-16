@@ -1,8 +1,8 @@
 
 
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {Link, useHistory} from "react-router-dom";
-import { listCards, deleteCard, readDeck } from "../utils/api";
+import {deleteCard} from "../utils/api";
 
 
 function CardList ({deck, cards}) {
@@ -26,8 +26,8 @@ function deleteCardHandler (cardId) {
 // map cards into format
 const cardLayout = cards.map((card) => {
     return (
-        <div className="container">
-            <div className="card" key={card.id}>
+        <div className="container" key={card.id}>
+            <div className="card" >
                 <p>Front:</p>
                 <div className="container">
                     <p>{card.front}</p>
