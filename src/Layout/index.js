@@ -16,10 +16,12 @@ function Layout() {
   useEffect(() => {
     async function getDecks() {
       const gettingDecks = await listDecks();
+      console.log("gettingDecks", gettingDecks)
       setDecks(gettingDecks);
     }
     getDecks();
   }, [setDecks]);
+console.log("decks", decks)
 
   // delete deck
   function deleteDeckHandler(deckId) {

@@ -15,25 +15,25 @@ const ViewDeck = ({ deck, decks, setDecks, cards, deleteDeckHandler}) => {
             <li className="breadcrumb-item" key="0">
               <Link to="/">Home</Link>
             </li>
-            <li className="breadcrumb-active" key="1">{deck.name}</li>
+            <li className="breadcrumb-item active" key="1">{deck.name}</li>
           </ol>
         </div>
         <div className="deck-info">
           <h3>{deck.name}</h3>
           <p>{deck.description}</p>
-          <Link to={`/decks/${deck.id}/edit`}>Edit</Link>
-          <Link to={`/decks/${deck.id}/study`}>Study</Link>
-          <Link to={`/decks/${deck.id}/cards/new`}>Add Cards</Link>
-          <button onClick={() => deleteDeckHandler(deck.id)}>Delete Deck</button>
+          <Link className="m-2 btn btn-primary" to={`/decks/${deck.id}/edit`}>Edit</Link>
+          <Link className="m-2 btn btn-primary" to={`/decks/${deck.id}/study`}>Study</Link>
+          <Link className="m-2 btn btn-primary" to={`/decks/${deck.id}/cards/new`}>Add Cards</Link>
+          <button className="btn btn-primary m-2" onClick={() => deleteDeckHandler(deck.id)}>Delete Deck</button>
         </div>
         <div>
-          <h4>Cards</h4>
+          <h4> {deck.cards.length} Cards</h4>
           <CardList
             deck={deck}
             decks={decks}
             setDecks={setDecks}
             deckId={deck.id}
-            cards={cards}
+            cards={deck.cards}
           />
         </div>
       </div>

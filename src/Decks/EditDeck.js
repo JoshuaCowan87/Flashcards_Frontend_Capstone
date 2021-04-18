@@ -40,6 +40,7 @@ const EditDeck = ({ deck, deckId }) => {
   const cancelHandler = (e) => {
     history.push("/");
   };
+  
   if (!deck) {
     return <p>Loading</p>;
   }
@@ -50,14 +51,14 @@ const EditDeck = ({ deck, deckId }) => {
           <Link to="/">Home</Link>
         </li>
         <li className="breadcrumb-item">
-          <Link to="/decks/:deckId">{editDeck.name}</Link>
+          <Link to={`/decks/${deckId}`}>{editDeck.name}</Link>
         </li>
-        <li className="breadcrumb-item-active">Edit Deck</li>
+        <li className="breadcrumb-item active">Edit Deck</li>
       </ol>
       <form>
         <label>Deck Name</label>
         <input
-          type="text"
+          type="textarea"
           id="name"
           name="name"
           onChange={changeHandler}
@@ -65,17 +66,25 @@ const EditDeck = ({ deck, deckId }) => {
         ></input>
 
         <label>Description</label>
-        <input
-          type="textArea"
+        <textarea
+          rows="3"
           id="description"
           name="description"
           onChange={changeHandler}
           value={editDeck.description}
-        ></input>
-        <button type="cancel" onClick={cancelHandler}>
+        ></textarea>
+        <button
+          className="m-2 btn btn-primary"
+          type="cancel"
+          onClick={cancelHandler}
+        >
           Cancel
         </button>
-        <button type="submit" onClick={submitHandler}>
+        <button
+          className="m-2 btn btn-primary"
+          type="submit"
+          onClick={submitHandler}
+        >
           Submit
         </button>
       </form>

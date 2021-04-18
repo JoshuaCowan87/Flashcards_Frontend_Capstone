@@ -30,7 +30,7 @@ const CreateDeck = () => {
         <li className="breadcrumb-item">
           <Link to="/">Home</Link>
         </li>
-        <li className="breadcrumb-item-active">Create Deck</li>
+        <li className="breadcrumb-item active">Create Deck</li>
       </ol>
       <form onSubmit={submitHandler}>
         <label>Deck Name</label>
@@ -43,13 +43,12 @@ const CreateDeck = () => {
         ></input>
 
         <label>Description</label>
-        <input
-          type="textArea"
+        <textarea
           id="description"
           name="description"
           onChange={changeHandler}
           value={newDeck.description}
-        ></input>
+        ></textarea>
 
         <button type="cancel" onClick={cancelHandler}>
           Cancel

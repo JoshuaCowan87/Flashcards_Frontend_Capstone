@@ -3,7 +3,7 @@ import { useHistory, Link } from "react-router-dom";
 import { readDeck } from "../utils/api/index";
 import NotEnoughCards from "../Cards/NotEnoughCards";
 
-function StudyDeck({ deckId /*deck, cards, setCards*/ }) {
+function StudyDeck({ deckId }) {
   const [cards, setCards] = useState();
   const [deck, setDeck] = useState();
   const [front, setFront] = useState(true);
@@ -30,6 +30,7 @@ function StudyDeck({ deckId /*deck, cards, setCards*/ }) {
     if (cardIndex + 1 < cards.length) {
       setCardIndex(cardIndex + 1);
       setFront(true);
+      
     } else {
       const result = window.confirm(
         "Do you want to restart? To return to homepage click cancel"
@@ -43,9 +44,7 @@ function StudyDeck({ deckId /*deck, cards, setCards*/ }) {
     }
   };
 
-  console.log("study deck", deck);
-  console.log("study cards", cards);
-
+  
   if (!cards) {
     return <p>Loading...</p>;
   }
@@ -60,10 +59,10 @@ function StudyDeck({ deckId /*deck, cards, setCards*/ }) {
           <li className="breadcrumb-item">
             <Link to="/">Home</Link>
           </li>
-          <li className="breadcrumb-itme">
+          <li className="breadcrumb-item">
             <Link to={`/decks/${deckId}`}>{deck.name}</Link>
           </li>
-          <li className="breadcrumb-item-active">Study</li>
+          <li className="breadcrumb-item active">Study</li>
         </ol>
       </nav>
       <h3> Study: {deck.name}</h3>
@@ -75,12 +74,10 @@ function StudyDeck({ deckId /*deck, cards, setCards*/ }) {
       <div>
         <p>{front ? cards[cardIndex].front : cards[cardIndex].back}</p>
       </div>
-      <button type="flip" onClick={flipHandler}>
+      <button className="m-2 btn btn-primary" type="flip" onClick={flipHandler}>
         Flip
       </button>
-      <button type="next" onClick={nextHandler}>
-        Next
-      </button>
+      {front ? null : <button className="m-2 btn btn-primary" onClick={nextHandler}>Next</button>}
     </div>
   );
 }

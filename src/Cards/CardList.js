@@ -7,13 +7,7 @@ import {deleteCard} from "../utils/api";
 
 function CardList ({deck, cards}) {
 // set variables
-
 const history = useHistory();
-
-
-
-
-
 
 // delete card handler
 function deleteCardHandler (cardId) {
@@ -50,6 +44,7 @@ const cardLayout = cards.map((card) => {
 })
 
    
+
 
     return (
 <div>

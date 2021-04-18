@@ -34,57 +34,60 @@ const EditCard = ({ deck, deckId }) => {
   // cancel handler
   function cancelHandler(e) {
     e.preventDefault();
-    history.push("/decks/:deckId");
+    history.push("/");
   }
 
   // submit handler
   async function cardSubmitHandler(e) {
     e.preventDefault();
     await updateCard(editCard);
-    history.push("/decks/:deckId");
+    history.go("/");
   }
 
-  console.log("editCard card", editCard);
-  console.log("edit card cardId", cardId);
   if (!deck) {
     return <p>Loading...</p>;
   }
   return (
     <div className="container">
-      <ol className="breadcrumb">
-        <li className="breadcrumb-item">
-          <Link to="/">Home</Link>
-        </li>
-        <li className="breadcrumb-item">
-          <Link to="/decks/:deckId">{deck.name}</Link>
-        </li>
-        <li className="breadcrumb-item-active">Edit Card</li>
-      </ol>
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <Link to="/">Home</Link>
+          </li>
+          <li className="breadcrumb-item">
+            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
+          </li>
+          <li className="breadcrumb-item active">Edit Card</li>
+        </ol>
+      </nav>
       <form>
         <label>Front</label>
-        <input
-          type="text"
+        <textarea
+          rows="3"
           id="front"
           name="front"
           onChange={cardFrontChangeHandler}
           value={editCard.front}
-        ></input>
+        ></textarea>
 
         <label>Back</label>
-        <input
-          type="text"
+        <textarea
+          rows="3"
           id="back"
           name="back"
           onChange={cardBackChangeHandler}
           value={editCard.back}
-        ></input>
-        <button type="cancel" onClick={cancelHandler}>
+        ></textarea>
+        </form>
+        <div>
+        <button className="m-2 btn btn-primary" type="cancel" onClick={cancelHandler}>
           Cancel
         </button>
-        <button type="submit" onClick={cardSubmitHandler}>
+        <button className="m-2 btn btn-primary" type="submit" onClick={cardSubmitHandler}>
           Submit
         </button>
-      </form>
+        </div>
+      
     </div>
   );
 };

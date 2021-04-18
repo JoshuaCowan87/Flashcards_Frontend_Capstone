@@ -6,6 +6,7 @@ import { listCards, readDeck } from "../utils/api/index";
 import ViewDeck from "./ViewDeck";
 import AddCard from "../Cards/AddCard";
 import EditCard from "../Cards/EditCard";
+import { getAllByPlaceholderText } from "@testing-library/dom";
 
 const DeckHome = ({ decks, setDecks, deleteDeckHandler }) => {
   const { deckId } = useParams();
@@ -14,13 +15,14 @@ const DeckHome = ({ decks, setDecks, deleteDeckHandler }) => {
 
   // fetch specific deck
   useEffect(() => {
-    async function getDeck() {
+    
+    async function getDeck() {  
       const gettingDeck = await readDeck(deckId);
       setDeck(gettingDeck);
     }
-    getDeck();
+    getDeck();   
   }, [deckId]);
-  // const deck = decks.find((deck) => `${deck.id}` === deckId);
+  
 
   // fetch cards per deck
   useEffect(() => {
