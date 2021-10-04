@@ -20,15 +20,22 @@ function deleteCardHandler (cardId) {
 // map cards into format
 const cardLayout = cards.map((card) => {
     return (
-        <div className="container" key={card.id}>
-            <div className="card" >
+        <div className="card" key={card.id}>
+            <div className="container" >
+                <div className="row">
+                <div className="col front-back-card">
                 <p>Front:</p>
-                <div className="container">
+                <div>
                     <p>{card.front}</p>
                 </div>
+                </div>
+                <div className="col front-back-card">
                 <p>Back:</p>
-                <div className="container">
+                <div>
                     <p>{card.back}</p>
+                </div>
+                </div>
+                </div>
                 </div>
                 <Link to={`/decks/${deck.id}/cards/${card.id}/edit`}>
                     Edit
@@ -37,7 +44,7 @@ const cardLayout = cards.map((card) => {
                  
                    
 
-            </div>
+            
             <button type="delete" onClick={ () => deleteCardHandler(card.id)}>Delete Card</button>
         </div>
     )

@@ -7,6 +7,8 @@ import { deleteDeck, listDecks } from "../utils/api/index";
 import CreateDeck from "../Home/CreateDeck";
 import ViewDecks from "../Home/ViewDecks";
 
+import "./styles.css"
+
 function Layout() {
   //assign variables
   const [decks, setDecks] = useState([]);
@@ -35,7 +37,7 @@ console.log("decks", decks)
     }
   }
   return (
-    <div>
+    <div className="background-color">
       <Header />
       <div className="container">
         <Switch>

@@ -13,21 +13,21 @@ const ViewDeck = ({ deck, decks, setDecks, cards, deleteDeckHandler}) => {
         <div>
           <ol className="breadcrumb">
             <li className="breadcrumb-item" key="0">
-              <Link to="/">Home</Link>
+              <Link to="/" className="breadcrumb-home">Home</Link>
             </li>
             <li className="breadcrumb-item active" key="1">{deck.name}</li>
           </ol>
         </div>
         <div className="deck-info">
-          <h3>{deck.name}</h3>
-          <p>{deck.description}</p>
-          <Link className="m-2 btn btn-primary" to={`/decks/${deck.id}/edit`}>Edit</Link>
-          <Link className="m-2 btn btn-primary" to={`/decks/${deck.id}/study`}>Study</Link>
-          <Link className="m-2 btn btn-primary" to={`/decks/${deck.id}/cards/new`}>Add Cards</Link>
-          <button className="btn btn-primary m-2" onClick={() => deleteDeckHandler(deck.id)}>Delete Deck</button>
+          <h2 className="deck-name">{deck.name}</h2>
+          <h4 className="deck-description">{deck.description}</h4>
+          <Link className="m-2 deck-buttons" to={`/decks/${deck.id}/edit`}>Edit</Link>
+          <Link className="m-2 deck-buttons" to={`/decks/${deck.id}/study`}>Study</Link>
+          <Link className="m-2 deck-buttons" to={`/decks/${deck.id}/cards/new`}>Add Cards</Link>
+          <button className="m-2 create-deck" onClick={() => deleteDeckHandler(deck.id)}>Delete Deck</button>
         </div>
         <div>
-          <h4> {deck.cards.length} Cards</h4>
+          <h4 className="deck-description"> {deck.cards.length} Cards</h4>
           <CardList
             deck={deck}
             decks={decks}

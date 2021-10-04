@@ -1,0 +1,109 @@
+/* ----- Template styling ----- */
+html {
+  background-color: #690208;
+}
+
+.breadcrumb-home {
+  color: black;
+}
+
+.background-color {
+  background-color: #690208;
+}
+
+.current-decks-header {
+  color: black;
+  font-size: 50px;
+}
+
+/* ----- Deck Formatting as Card ----- */
+.decks-card {
+  border-style: double;
+  border-color: rgb(105, 2, 8);
+}
+
+.decks-card {
+  margin: 10px;
+  padding: 10px;
+  background-color: #fdb0b4;
+}
+.deck-buttons:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  color: black;
+}
+.deck-buttons {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: #b8040d;
+  border-radius: 50%;
+}
+
+.delete-deck-buttons {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: #b8040d;
+  border-radius: 50%;
+}
+
+.delete-deck-buttons:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  color: black;
+}
+
+.create-deck {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: #fa121e;
+  border-radius: 20%;
+}
+
+.create-deck:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  color: black;
+}
+
+/* ----- View Decks ----- */
+
+.deck-name {
+  color: black;
+  font-weight: bold;
+}
+
+.deck-description {
+  color: black;
+}
+
+/* ----- Card Formatting as Card ----- */
+.card {
+    background-color: #fdb0b4 !important;
+    margin-bottom: 20px;
+}
+
+.front-back-card {
+    border-color: black;
+    border-style: solid;
+}
