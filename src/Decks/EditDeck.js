@@ -48,46 +48,53 @@ const EditDeck = ({ deck, deckId }) => {
     <div className="container">
       <ol className="breadcrumb">
         <li className="breadcrumb-item">
-          <Link to="/">Home</Link>
+          <Link className="b-crumb" to="/">Home</Link>
         </li>
         <li className="breadcrumb-item">
-          <Link to={`/decks/${deckId}`}>{editDeck.name}</Link>
+          <Link className="b-crumb" to={`/decks/${deckId}`}>{editDeck.name}</Link>
         </li>
         <li className="breadcrumb-item active">Edit Deck</li>
       </ol>
+      <div>
+        <div className="col">
       <form>
-        <label>Deck Name</label>
+        <label className="edit-card-front-back-title">Deck Name</label>
         <input
           type="textarea"
           id="name"
           name="name"
           onChange={changeHandler}
           value={editDeck.name}
+          className="row edit-card-textbox"
         ></input>
 
-        <label>Description</label>
+        <label className="edit-card-front-back-title">Description</label>
         <textarea
           rows="3"
           id="description"
           name="description"
           onChange={changeHandler}
           value={editDeck.description}
+          className="row edit-card-textbox"
         ></textarea>
+         </form>
+        </div>
+        
         <button
-          className="m-2 btn btn-primary"
-          type="cancel"
-          onClick={cancelHandler}
-        >
-          Cancel
-        </button>
-        <button
-          className="m-2 btn btn-primary"
+          className="m-2 edit-card-cancel buttons-all"
           type="submit"
           onClick={submitHandler}
         >
           Submit
         </button>
-      </form>
+        <button
+          className="m-2 edit-card-submit buttons-all"
+          type="cancel"
+          onClick={cancelHandler}
+        >
+          Cancel
+        </button>
+      </div>
     </div>
   );
 };

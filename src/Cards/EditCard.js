@@ -52,41 +52,48 @@ const EditCard = ({ deck, deckId }) => {
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
-            <Link to="/">Home</Link>
+            <Link className="b-crumb" to="/">Home</Link>
           </li>
           <li className="breadcrumb-item">
-            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
+            <Link className="b-crumb" to={`/decks/${deckId}`}>{deck.name}</Link>
           </li>
           <li className="breadcrumb-item active">Edit Card</li>
         </ol>
       </nav>
+      <div>
+      <div className="col">
       <form>
-        <label>Front</label>
+        <label className="edit-card-front-back-title">Front</label>
         <textarea
           rows="3"
           id="front"
           name="front"
           onChange={cardFrontChangeHandler}
           value={editCard.front}
+          className="row edit-card-textbox"
+
         ></textarea>
 
-        <label>Back</label>
+        <label className="edit-card-front-back-title">Back</label>
         <textarea
           rows="3"
           id="back"
           name="back"
           onChange={cardBackChangeHandler}
           value={editCard.back}
+          className="row edit-card-textbox"
         ></textarea>
         </form>
-        <div>
-        <button className="m-2 btn btn-primary" type="cancel" onClick={cancelHandler}>
-          Cancel
-        </button>
-        <button className="m-2 btn btn-primary" type="submit" onClick={cardSubmitHandler}>
+        
+        </div>
+        <button className="m-2 edit-card-submit buttons-all" type="submit" onClick={cardSubmitHandler}>
           Submit
         </button>
+        <button className="m-2 edit-card-cancel buttons-all" type="cancel" onClick={cancelHandler}>
+          Cancel
+        </button>
         </div>
+        
       
     </div>
   );

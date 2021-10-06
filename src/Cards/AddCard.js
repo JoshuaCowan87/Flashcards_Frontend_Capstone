@@ -28,8 +28,12 @@ const AddCard = ({ deck, setDeck, deckId }) => {
     setDeck(deck);
   }
 
+  // const cardCancelHandler = () => {
+  //   history.push("/decks/:deckId");
+  // };
+
   const cardCancelHandler = () => {
-    history.push("/decks/:deckId");
+    history.push(`/decks/${deckId}`);
   };
 
   if (!deck) {
@@ -40,40 +44,46 @@ const AddCard = ({ deck, setDeck, deckId }) => {
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
-            <Link to="/">Home</Link>
+            <Link className="b-crumb" to="/">Home</Link>
           </li>
           <li className="breadcrumb-item">
-            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
+            <Link className="b-crumb" to={`/decks/${deckId}`}>{deck.name}</Link>
           </li>
           <li className="breadcrumb-item active">Add Card</li>
         </ol>
       </nav>
 
-      <h3>{deck.name}: Add Card</h3>
-      <form>
-        <label>Front</label>
+     
+      <div>
+        <div className="col">
+      <form >
+        <label className="edit-card-front-back-title">Front</label>
         <textarea
           type="text"
           id="front"
           name="front"
           onChange={cardFrontChangeHandler}
           value={newCard.front}
+          className="row edit-card-textbox"
         ></textarea>
-        <label>Back</label>
+        <label className="edit-card-front-back-title">Back</label>
         <textarea
           type="text"
           id="back"
           name="back"
           onChange={cardBackChangeHandler}
           value={newCard.back}
+          className="row edit-card-textbox"
         ></textarea>
-        <button className="m-2 btn btn-primary" type="canel" onClick={cardCancelHandler}>
-          Cancel
-        </button>
-        <button className="m-2 btn btn-primary" type="submit" onClick={cardSubmitHandler}>
+        </form>
+        </div>
+        <button className="m-2 edit-card-submit buttons-all" type="submit" onClick={cardSubmitHandler}>
           Submit
         </button>
-      </form>
+        <button className="m-2 edit-card-cancel buttons-all" type="canel" onClick={cardCancelHandler}>
+          Cancel
+        </button>
+        </div>
     </div>
   );
 };

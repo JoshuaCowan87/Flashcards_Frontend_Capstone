@@ -9,7 +9,7 @@ const ViewDeck = ({ deck, decks, setDecks, cards, deleteDeckHandler}) => {
 
     if (!deck) return null;
     return (
-      <div className="container">
+      <div className="container" style={{marginTop:"40px"}}>
         <div>
           <ol className="breadcrumb">
             <li className="breadcrumb-item" key="0">
@@ -26,6 +26,7 @@ const ViewDeck = ({ deck, decks, setDecks, cards, deleteDeckHandler}) => {
           <Link className="m-2 deck-buttons" to={`/decks/${deck.id}/cards/new`}>Add Cards</Link>
           <button className="m-2 create-deck" onClick={() => deleteDeckHandler(deck.id)}>Delete Deck</button>
         </div>
+        <br />
         <div>
           <h4 className="deck-description"> {deck.cards.length} Cards</h4>
           <CardList

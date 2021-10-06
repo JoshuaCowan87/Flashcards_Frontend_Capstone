@@ -57,27 +57,28 @@ function StudyDeck({ deckId }) {
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
-            <Link to="/">Home</Link>
+            <Link className="b-crumb" to="/">Home</Link>
           </li>
           <li className="breadcrumb-item">
-            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
+            <Link className="b-crumb"to={`/decks/${deckId}`}>{deck.name}</Link>
           </li>
           <li className="breadcrumb-item active">Study</li>
         </ol>
       </nav>
-      <h3> Study: {deck.name}</h3>
+      {/* <h3> Study: {deck.name}</h3> */}
       <div className="container">
-        <h5>
+        <h3 className="study-deck-header">
           Card {cardIndex + 1} of {cards.length}
-        </h5>
+        </h3>
       </div>
       <div>
-        <p>{front ? cards[cardIndex].front : cards[cardIndex].back}</p>
+        <p className="study-deck-front-back">{front ? cards[cardIndex].front : cards[cardIndex].back}</p>
       </div>
-      <button className="m-2 btn btn-primary" type="flip" onClick={flipHandler}>
+      <button className="m-2 edit-card-submit buttons-all" type="flip" onClick={flipHandler}>
         Flip
       </button>
-      {front ? null : <button className="m-2 btn btn-primary" onClick={nextHandler}>Next</button>}
+      <button className="m-2 edit-card-submit buttons-all" onClick={nextHandler}>Next</button>
+      
     </div>
   );
 }

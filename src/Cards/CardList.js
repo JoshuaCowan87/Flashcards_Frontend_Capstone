@@ -37,15 +37,15 @@ const cardLayout = cards.map((card) => {
                 </div>
                 </div>
                 </div>
-                <Link to={`/decks/${deck.id}/cards/${card.id}/edit`}>
-                    Edit
+                <Link to={`/decks/${deck.id}/cards/${card.id}/edit`} className="edit-card-on-card">
+                    Edit Card
                 </Link>
                 
                  
                    
 
             
-            <button type="delete" onClick={ () => deleteCardHandler(card.id)}>Delete Card</button>
+            <button className="view-deck-delete-card" type="delete" onClick={ () => deleteCardHandler(card.id)}>Delete Card</button>
         </div>
     )
 })

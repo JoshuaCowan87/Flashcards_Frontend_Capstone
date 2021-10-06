@@ -28,35 +28,42 @@ const CreateDeck = () => {
     <div className="container">
       <ol className="breadcrumb">
         <li className="breadcrumb-item">
-          <Link to="/">Home</Link>
+          <Link className="b-crumb" to="/">Home</Link>
         </li>
         <li className="breadcrumb-item active">Create Deck</li>
       </ol>
+      <div>
+        <div className="col">
       <form onSubmit={submitHandler}>
-        <label>Deck Name</label>
+        <label className="edit-card-front-back-title">Deck Name</label>
         <input
           type="text"
           id="name"
           name="name"
           onChange={changeHandler}
           value={newDeck.name}
+          className="row edit-card-textbox"
         ></input>
 
-        <label>Description</label>
+        <label className="edit-card-front-back-title">Description</label>
         <textarea
           id="description"
           name="description"
           onChange={changeHandler}
           value={newDeck.description}
+          className="row edit-card-textbox"
         ></textarea>
-
-        <button type="cancel" onClick={cancelHandler}>
-          Cancel
-        </button>
-        <button type="submit" onSubmit={submitHandler}>
+</form>
+</div>
+        
+        <button className="edit-card-submit buttons-all" type="submit" onSubmit={submitHandler}>
           Submit
         </button>
-      </form>
+        <button className="edit-card-cancel buttons-all" type="cancel" onClick={cancelHandler}>
+          Cancel
+        </button>
+      
+      </div>
     </div>
   );
 };
