@@ -4,6 +4,7 @@ Interactive flashcard application that allows users to create and edit various d
 
 ## Tech Stack
 **Client:** React, CSS bootstrap, CSS grid
+<br />
 **Server:** statis JSON server 
 
 
