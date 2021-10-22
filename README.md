@@ -1,24 +1,18 @@
-Sample project to showcase my competenct with React.js, React state managment, React router and React Hooks.
+# Flashcards
+Interactive flashcard application that allows users to create and edit various decks of study flashcards. One aspect I enjoy about this app is the ability to view all cards within a deck on one page, or go through each card one by one to study. This allows the user to customize their study approach and provides more flexbility.
 
-Skills Used:
-  Javascript
-  React
-  React Hooks
-  React Router
-  Bootstrap 4
-  HTML5
-  
-Basic Functionality:
-  Allows users to create decks of flashcards and edit/study their contents
-  Uses Json-Server to simulate API calls to a server.
 
-How To Run Locally:
+## Tech Stack
+**Client:** React, CSS bootstrap, CSS grid
+**Server:** statis JSON server 
+
+
+## Installation
   Fork and Clone this repository
   NPM Install if needed
   Run npm start PC Users might need to run npm run start:server and npm run start:react separately
   
-To Dos:
-  Add graphics, make more visually appealing
-  Create search feature for decks
-  Use deployed DB to enable use by other users.
+## Improvements
+Some features that I would like to add is the ability to search for decks based on keywords. This provides the option for large scale handling of study decks that can be shared with others. This is currently a sample project and not connected to a live database, but having a live version would allow for groups of user to access current study decks from different locations. One option even being a user authentication to allow for personalized study decks or private use by organizations or teachers. 
+I would also like to enhance the functionality and provide the option to randomize the cards within a deck. Or include a progress bar so you can track your progress within a deck.
  
